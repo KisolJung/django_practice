@@ -13,26 +13,14 @@
     </head>
     <body>
         <!-- Responsive navbar-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand" href="#!">Start Bootstrap</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Blog</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        {% include "navbar.html" %}
         <!-- Page content-->
         <div class="container mt-5">
             <div class="row">
                 <div class="col-lg-8">
                     <!-- Post content-->
                     <article>
+                        <br/>
                         <!-- Post header-->
                         <header class="mb-4">
                             <!-- Post title-->
@@ -50,13 +38,13 @@
                             <p class="fs-5 mb-4">
                                 {{board_detail.body | safe}}
                             </p>
-
+                            <br/><br/><br/>
                             {% if board_detail.file_path %}
                                 <p class="lead">
                                     <button onclick="location.href='{{ board_detail.file_path.url | safe }}'">파일 다운로드</a> </button>
                                     {{ board_detail.file_name }}
                             {% else %}
-                                <p class="lead"> No file
+                                <p class="lead"> 첨부파일이 없습니다
                             {% endif %}
                             <button onclick="location.href='{% url 'boardApp:boardMain' %}'" style="margin-left: 550px">목록</a> </button>
                             </p>
@@ -67,12 +55,21 @@
                             {% endcomment %}
                         </section>
                     </article>
+                    <br/>
                     <!-- Comments section-->
                     <section class="mb-5">
                         <div class="card bg-light">
                             <div class="card-body">
                                 <!-- Comment form-->
-                                <form class="mb-4"><textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!"></textarea></form>
+                                <form class="mb-4" method="POST">
+                                    {% csrf_token %}
+                                    {{ comment_form }}
+                                    <br/>
+                                    <button {% if not user.is_authenticated %}disabled{% endif %}
+                                            class="btn btn-info" type="submit">SUBMIT</button>
+                                </form>
+
+                                {% comment %}
                                 <!-- Comment with nested comments-->
                                 <div class="d-flex mb-4">
                                     <!-- Parent comment-->
@@ -98,14 +95,22 @@
                                         </div>
                                     </div>
                                 </div>
+                                {% endcomment %}
+
                                 <!-- Single comment-->
+
+                                {% for comment in comments %}
                                 <div class="d-flex">
                                     <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
                                     <div class="ms-3">
-                                        <div class="fw-bold">Commenter Name</div>
-                                        When I look at the universe and all the ways the universe wants to kill us, I find it hard to reconcile that with statements of beneficence.
+                                        <div class="fw-bold">{{ comment.author }}</div>
+                                        <h6 class="ms-3">작성일: {{ comment.pub_date }}</h6>
+                                        {{ comment.comments }}
                                     </div>
                                 </div>
+                                {% endfor %}
+
+
                             </div>
                         </div>
                     </section>

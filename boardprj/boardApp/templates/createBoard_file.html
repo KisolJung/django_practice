@@ -1,4 +1,3 @@
-
 {% load static %}
 <head>
     <title>게시글 작성</title>
@@ -7,7 +6,6 @@
 <link rel="stylesheet" href="{% static 'css/board-form.css' %}">
 </head>
 
-    {% include "loginServiceCheck.html" %}
     {% include "navbar.html" %}
 
     <main class="form-board">
@@ -28,6 +26,7 @@
             {{ form.file_path }}
         </div>
         <br/>
+
         <button type="submit">SUBMIT</button>
     </form>
         <br/>

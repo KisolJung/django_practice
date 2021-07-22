@@ -22,7 +22,7 @@
       <td>{{ board.id }}</td>
       <td width="60%">{{ board.title }}</td>
       <td>{{ board.pub_date }}</td>
-      <td>미완{#{ board.author }#}</td>
+      <td>{{ board.author }}</td>
       {% if board.file_path %}
         <td>O</td>
       {% else %}

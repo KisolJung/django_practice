@@ -8,8 +8,14 @@ blank: 유효성 form.is_valid()가 호출될 대 폼 유효성 검사에 사용
 # Create your models here.
 class Board(models.Model):
     title = models.CharField(max_length=100)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     pub_date = models.DateTimeField(auto_now_add=True)
     body = models.TextField()
     file_path = models.FileField(blank=True, null=True, upload_to="%Y/%m/%d/")
     file_name = models.TextField(blank=True, default="")
+
+class Comment(models.Model):
+    board = models.ForeignKey(Board, on_delete=models.CASCADE, null=True)
+    pub_date = models.DateTimeField(auto_now_add=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    comments = models.TextField()
