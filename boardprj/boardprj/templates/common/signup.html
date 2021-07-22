@@ -1,0 +1,59 @@
+
+{% load static %}
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="{% static 'css/signin.css' %}">
+</head>
+
+<body class="text-center">
+{% include "navbar.html" %}
+
+<main class="form-signin">
+  {% include "common/form_errors.html" %}
+  <form method="POST">
+    {% csrf_token %}
+    <img class="mb-4" src="{% static 'image/bootstrapIcon.png' %}" alt="app icon" width="72" height="72">
+    <h1 class="h3 mb-3 fw-normal">Join Us!</h1>
+
+    <div class="form-floating">
+      <input type="text" class="form-control" id="username" placeholder="username" name="username"
+        value="{{ form.username.value|default_if_none:'' }}">
+      <label for="username">User ID</label>
+    </div>
+    <br>
+    <div class="form-floating">
+      <input type="email" class="form-control" id="email" placeholder="Email" name="email"
+        value="{{ form.email.value|default_if_none:'' }}">
+      <label for="email">Email</label>
+    </div>
+    <br>
+    <div class="form-floating">
+      <input type="password" class="form-control" id="password1" placeholder="Password" name="password1"
+        value="{{ form.password1.value|default_if_none:'' }}">
+      <label for="password1">Password</label>
+      <small id="passwordHelpInline" class="text-muted">
+      Must be 8-20 characters long.
+    </small>
+    </div>
+    <br>
+      <div class="form-floating">
+      <input type="password" class="form-control" id="password2" placeholder="Password" name="password2"
+        value="{{ form.password2.value|default_if_none:'' }}">
+      <label for="password2">Password Check</label>
+    </div>
+    <br>
+
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign Up</button>
+
+
+
+  </form>
+
+  <button class="w-100 btn btn-lg btn-dark" onclick="location.href='{% url 'index' %}'">홈페이지</button>
+
+</main>
+
+
+</body>
+

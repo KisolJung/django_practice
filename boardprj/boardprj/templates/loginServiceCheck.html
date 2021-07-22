@@ -1,0 +1,10 @@
+{% if user.is_authenticated == false %}
+        <script>
+            var login= confirm("로그인 후 이용이 가능합니다\n로그인하시겠습니까?");
+            if(login==true){
+                location.href="{% url 'common:login' %}"
+            }else{
+                location.href="{% url 'boardApp:boardMain' %}"
+            }
+        </script>
+{% endif %}

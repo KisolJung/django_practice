@@ -35,7 +35,11 @@ include_js: false
   </header>
 
   <main class="px-3">
-    <h1>Cover your page.</h1>
+    {% if user.is_authenticated %}
+    <h1>환영합니다 &nbsp;{{ user.username }}님</h1>
+    {% else %}
+    <h1>환영합니다</h1>
+    {% endif %}
     <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
     <p class="lead">
       <a href="{% url 'boardApp:boardMain' %}"

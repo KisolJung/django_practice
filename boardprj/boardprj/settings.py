@@ -141,3 +141,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')    #실제 파일이 저장되는 �
 
 
 LOGIN_REDIRECT_URL = '/'    #로그인시 자동으로 이 url로 가게됨!
+LOGOUT_REDIRECT_URL = '/'    #로그인시 자동으로 이 url로 가게됨!

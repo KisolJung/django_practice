@@ -11,7 +11,7 @@ class CreateBoard(forms.ModelForm):
         widgets = {
             'title': forms.TextInput(
                 attrs={'placeholder': '제목을 입력하세요.'}),
-            'file_name': forms.HiddenInput()
-            #'file_path': forms.FileInput(attrs={'name': 'file_paths'})
+            'file_name': forms.HiddenInput(),
+            'file_path': forms.FileInput(attrs={'style': 'border: 1px solid'})
         }
 

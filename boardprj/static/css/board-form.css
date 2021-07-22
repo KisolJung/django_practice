@@ -1,0 +1,20 @@
+body {
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #f5f5f5;
+}
+
+.form-board {
+  width: 50em;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.form-board input{
+width: 80%;
+}
+.form-board label{
+width: 20%;
+}

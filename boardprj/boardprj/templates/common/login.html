@@ -1,12 +1,14 @@
+
 {% load static %}
 <head>
-<link rel="stylesheet" href="{% static 'css/signin.css' %}">
- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
   integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-
+<link rel="stylesheet" href="{% static 'css/signin.css' %}">
 </head>
+
 <body class="text-center">
+{% include "navbar.html" %}
+
 <main class="form-signin">
   <form method="POST">
     {% csrf_token %}
@@ -28,11 +30,18 @@
       </label>
     </div>
     <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-    <p class="mt-5 mb-3 text-muted">&copy; 2020-2021</p>
+
+
+
   </form>
 
+  <button class="w-100 btn btn-lg btn-dark" onclick="location.href='{% url 'index' %}'">홈페이지</button>
 
-  <button class="w-100 btn btn-lg" style="border: solid" onclick="location.href='{% url 'index' %}'">홈페이지</button>
+    <p class="mt-5 mb-3 text-muted">If you don't have account <a href="{% url 'common:signup' %}">Sign UP</a></p>
+
+
 </main>
 
+
 </body>
+

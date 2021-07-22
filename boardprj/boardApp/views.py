@@ -30,9 +30,9 @@ def createBoard_File(request):
                 form.save()
                 printQuery()
 
-            return redirect('boardMain')
+            return redirect('boardApp:boardMain')
         else:
-            return redirect('index')
+            return redirect('boardApp:index')
     else:
         form = CreateBoard()
         return render(request, 'createBoard_file.html', {'form': form})
@@ -49,7 +49,7 @@ def uploadFile(request):
         fs = FileSystemStorage()
         filename = fs.save(myfile.name, myfile)
         uploaded_file_url = fs.url(filename)
-        return render(request, 'uploadSample.html',{'uploaded_file_url': uploaded_file_url})
+        return render(request, 'uploadSample.html', {'uploaded_file_url': uploaded_file_url})
     return render(request, 'uploadSample.html')
 
 

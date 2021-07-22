@@ -38,7 +38,7 @@
                             <!-- Post title-->
                             <h1 class="fw-bolder mb-1">{{ board_detail.title }}</h1>
                             <!-- Post meta content-->
-                            <div class="text-muted fst-italic mb-2">Posted on {{ board_detail.pub_date }}</div>
+                            <div class="text-muted fst-italic mb-2">Posted on {{ board_detail.pub_date }} by {{ board_detail.author }}</div>
                             <!-- Post categories-->
                             <a class="badge bg-secondary text-decoration-none link-light" href="#!">Web Design</a>
                             <a class="badge bg-secondary text-decoration-none link-light" href="#!">Freebies</a>
@@ -60,9 +60,11 @@
                             {% endif %}
                             <button onclick="location.href='{% url 'boardApp:boardMain' %}'" style="margin-left: 550px">목록</a> </button>
                             </p>
+                            {% comment %}
                             <div class="card bg-light">
                             <p style="padding: 10px"><button onclick="location.href='{% url 'boardApp:boardMain' %}'" >목록</a> </button></p>
                             </div>
+                            {% endcomment %}
                         </section>
                     </article>
                     <!-- Comments section-->
