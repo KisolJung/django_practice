@@ -1,0 +1,48 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<br>
+<section style="padding: 100px; text-align: center;">
+<table class="table table-striped table-hover table-bordered">
+  <thead class="table-dark">
+    <tr>
+      <th>#</th>
+      <th>제목</th>
+      <th>작성일</th>
+      <th>작성자</th>
+      <th>첨부파일</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% if boards %}
+    {% for board in boards %}
+    <tr onClick="location.href='{% url 'boardApp:detail' board.id %}'">
+      <td>{{ board.id }}</td>
+      <td width="60%">{{ board.title }}</td>
+      <td>{{ board.pub_date }}</td>
+      <td>미완{#{ board.author }#}</td>
+      {% if board.file_path %}
+        <td>O</td>
+      {% else %}
+        <td>X</td>
+      {% endif %}
+    </tr>
+      {% endfor %}
+  {% else %}
+  <tr>
+    <td colspan="5">게시물이 존재하지 않습니다.</td>
+  </tr>
+  {% endif %}
+    </tbody>
+</table>
+</section>
+
+
+{% endblock %}
+
+
+
+
+

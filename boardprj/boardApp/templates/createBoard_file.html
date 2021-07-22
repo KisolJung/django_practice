@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <input type="submit" value="SUBMIT">
+    </form>
+    <br/>
+    <button onclick="location.href='{% url 'boardApp:boardMain' %}'">게시글 목록</button>
+{% endblock %}
