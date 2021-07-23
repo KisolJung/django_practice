@@ -39,8 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'boardApp.apps.BoardappConfig',
     'common.apps.CommonConfig',
-    'ckeditor',
-    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -138,34 +136,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-MEDIA_URL = '/media/'   # url을 통해 첨부파일에 접근할 수 있는 url 경로
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')    # 실제 파일이 저장되는 경로
+MEDIA_URL = '/media/'   #url을 통해 첨부파일에 접근할 수 있는 url 경로
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')    #실제 파일이 저장되는 경로
 
 
-LOGIN_REDIRECT_URL = '/'    # 로그인시 자동으로 이 url로 가게됨!
-LOGOUT_REDIRECT_URL = '/'    # 로그아웃시 자동으로 이 url로 가게됨!
-
-CKEDITOR_UPLOAD_PATH = "uploads/"
-
-# 쿼리를 Terminal에서 보여주기 위하여 LOGGING을 추가함
-LOGGING = {
-    'version': 1,
-    'filters': {
-        'require_debug_true': {
-            '()': 'django.utils.log.RequireDebugTrue',
-        }
-    },
-    'handlers': {
-        'console': {
-            'level': 'DEBUG',
-            'filters': ['require_debug_true'],
-            'class': 'logging.StreamHandler',
-        }
-    },
-    'loggers': {
-        'django.db.backends': {
-            'level': 'DEBUG',
-            'handlers': ['console'],
-        }
-    }
-}
+LOGIN_REDIRECT_URL = '/'    #로그인시 자동으로 이 url로 가게됨!
+LOGOUT_REDIRECT_URL = '/'    #로그인시 자동으로 이 url로 가게됨!

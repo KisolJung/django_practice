@@ -1,7 +1,6 @@
 from django import forms
 from django.forms import ClearableFileInput
 from .models import Board, Comment, UploadFile
-from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 #Meta 클래스는 내부 클래스로 활용되며, 기본필드의 값을 재정의 할 때 사용.
 
@@ -13,7 +12,6 @@ class CreateBoard(forms.ModelForm):
         widgets = {
             'title': forms.TextInput(
                 attrs={'placeholder': '제목을 입력하세요.'}),
-            'body': forms.CharField(widget=CKEditorUploadingWidget())
         }
 
 

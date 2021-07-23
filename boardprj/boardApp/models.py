@@ -1,7 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from ckeditor.fields import RichTextField
-from ckeditor_uploader.fields import RichTextUploadingField
 
 """
 null: db에 null 값을 가질지 정함 (db-related) => 문자열 기반 필드는 사용 불가능!
@@ -12,7 +10,7 @@ class Board(models.Model):
     title = models.CharField(max_length=100)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     pub_date = models.DateTimeField(auto_now_add=True)
-    body = RichTextUploadingField()
+    body = models.TextField()
 
 class Comment(models.Model):
     board = models.ForeignKey(Board, on_delete=models.CASCADE, null=True)

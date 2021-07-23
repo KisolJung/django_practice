@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import CreateBoard, CreateComment, UploadFileForm
 from .models import Board, Comment, UploadFile
+from django.core.files.storage import FileSystemStorage
+from django.db import connection
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 
@@ -14,6 +16,7 @@ def index(request):
 def boardMain(request):
     page = request.GET.get('page', '1')
     board_list = Board.objects.order_by('-id')
+    print(board_list.query)
     paginator = Paginator(board_list, 10)
     boards = paginator.get_page(page)
     context = {
@@ -33,6 +36,7 @@ def create_board_multiFile(request):
             new_board = board_form.save(commit=False)
             new_board.author = request.user
             new_board.save()
+            printQuery()
             board_id = Board.objects.latest('id').id
             if file_form.is_valid():
                 files = request.FILES.getlist('file')
@@ -41,6 +45,7 @@ def create_board_multiFile(request):
                     # new_files = file_form.save(commit=False)
                     upload_file_list.append(UploadFile(file=f, board_id=board_id, org_file_name=f.name))
                 UploadFile.objects.bulk_create(upload_file_list)
+                printQuery()
                 return redirect('boardApp:boardMain')
     else:
         context = {
@@ -55,6 +60,8 @@ def detail(request, board_id):
     board_detail = get_object_or_404(Board, pk=board_id)
     comments = Comment.objects.filter(board_id=board_id).order_by('-id')
     upload_file = UploadFile.objects.filter(board_id=board_id).order_by('-id')
+    print(comments.query)
+    print(upload_file.query)
 
     comment_form = CreateComment()
 
@@ -74,7 +81,14 @@ def detail(request, board_id):
             if user.is_authenticated:
                 new_comment.author = request.user
                 new_comment.save()
+                printQuery()
 
     return render(request, 'detail.html', context)
 
 
+# Select 외의 dml 출력
+def printQuery():
+    line = "=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
+    print(line + line)
+    print(connection.queries[-1])
+    print(line + line)
