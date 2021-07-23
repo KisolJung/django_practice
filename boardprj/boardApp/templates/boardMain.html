@@ -17,17 +17,18 @@
     </tr>
   </thead>
   <tbody>
+
   {% if boards %}
     {% for board in boards %}
     <tr onClick="location.href='{% url 'boardApp:detail' board.id %}'">
-      <td>{{ board.id }}</td>
-      <td width="60%">{{ board.title }}</td>
-      <td>{{ board.pub_date|date:'Y-m-d' }}</td>
-      <td>{{ board.author }}</td>
-      <td>{{ board.uploadfile_set.count }}</td>
+        <td>{{ board.id }}</td>
+        <td width="60%">{{ board.title }}</td>
+        <td width="10%">{{ board.pub_date|date:'Y-m-d' }}</td>
+        <td>{{ board.author }}</td>
+        <td>{{ board.uploadfile_set.count }}</td>
         <td>{{ board.comment_set.count }}</td>
     </tr>
-      {% endfor %}
+    {% endfor %}
   {% else %}
   <tr>
     <td colspan="5">게시물이 존재하지 않습니다.</td>

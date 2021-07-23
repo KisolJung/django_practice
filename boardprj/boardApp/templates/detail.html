@@ -21,6 +21,7 @@
                     <!-- Post content-->
                     <article>
                         <br/>
+                        <br/>
                         <!-- Post header-->
                         <header class="mb-4">
                             <!-- Post title-->
@@ -38,10 +39,12 @@
                             <p class="fs-5 mb-4">
                                 {{board_detail.body | safe}}
                             </p>
-                            <br/><br/><br/>
+                            <hr/>
+                            <br/>
+                            <div class="card bg-light">
                             {% if upload_file %}
 
-                                <p class="lead">
+                                <p class="lead" style="margin: 20px;">
 
                                     {% for uf in upload_file %}
                                         <button onclick="location.href='{{ uf.file.url | safe }}'">파일 다운로드</a> </button>
@@ -52,16 +55,15 @@
                             {% else %}
                                 <p class="lead"> 첨부파일이 없습니다
                             {% endif %}
-                            <button onclick="location.href='{% url 'boardApp:boardMain' %}'" style="margin-left: 550px">목록</a> </button>
+
+
                             </p>
-                            {% comment %}
-                            <div class="card bg-light">
-                            <p style="padding: 10px"><button onclick="location.href='{% url 'boardApp:boardMain' %}'" >목록</a> </button></p>
                             </div>
-                            {% endcomment %}
+                            <br/>
+                            <button type="button" style="margin-left: 780px" class="btn btn-dark" onclick="location.href='{% url 'boardApp:boardMain' %}'">목록</a> </button>
+
                         </section>
                     </article>
-                    <br/>
                     <!-- Comments section-->
                     <section class="mb-5">
                         <div class="card bg-light">
@@ -124,7 +126,9 @@
                 <!-- Side widgets-->
                 <div class="col-lg-4">
                     <!-- Search widget-->
+                    <br><br>
                     <div class="card mb-4">
+
                         <div class="card-header">Search</div>
                         <div class="card-body">
                             <div class="input-group">

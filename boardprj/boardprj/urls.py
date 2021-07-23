@@ -26,6 +26,7 @@ urlpatterns = [
     path('', boardApp.views.index, name='index'),
     path('boardMain/', include('boardApp.urls')),
     path('user/', include('common.urls')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
 if settings.DEBUG:
