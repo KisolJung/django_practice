@@ -11,11 +11,14 @@ class Board(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     pub_date = models.DateTimeField(auto_now_add=True)
     body = models.TextField()
-    file_path = models.FileField(blank=True, null=True, upload_to="%Y/%m/%d/")
-    file_name = models.TextField(blank=True, default="")
 
 class Comment(models.Model):
     board = models.ForeignKey(Board, on_delete=models.CASCADE, null=True)
     pub_date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     comments = models.TextField()
+
+class UploadFile(models.Model):
+    board = models.ForeignKey(Board, on_delete=models.CASCADE, null=True)
+    org_file_name = models.TextField(blank=True, default="")
+    file = models.FileField(blank=True, null=True, upload_to="%Y/%m/%d/")

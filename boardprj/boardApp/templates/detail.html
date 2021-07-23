@@ -39,10 +39,16 @@
                                 {{board_detail.body | safe}}
                             </p>
                             <br/><br/><br/>
-                            {% if board_detail.file_path %}
+                            {% if upload_file %}
+
                                 <p class="lead">
-                                    <button onclick="location.href='{{ board_detail.file_path.url | safe }}'">파일 다운로드</a> </button>
-                                    {{ board_detail.file_name }}
+
+                                    {% for uf in upload_file %}
+                                        <button onclick="location.href='{{ uf.file.url | safe }}'">파일 다운로드</a> </button>
+                                        {{ uf.org_file_name }}
+                                    <br/>
+                                    {% endfor %}
+
                             {% else %}
                                 <p class="lead"> 첨부파일이 없습니다
                             {% endif %}

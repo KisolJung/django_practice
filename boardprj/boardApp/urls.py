@@ -5,8 +5,6 @@ app_name = 'boardApp'
 
 urlpatterns = [
     path('', views.boardMain, name='boardMain'),
-    #path('createBoard/', views.createBoard, name='createBoard'),
-    #path('sampleUpload/', views.uploadFile, name='uploadFile'),
-    path('boardWfile/', views.createBoard_File, name='createBoard_File'),
+    path('createBoard/', views.create_board_multiFile, name='create_board_multiFile'),
     path('detail/<int:board_id>/', views.detail, name='detail'),
 ]
