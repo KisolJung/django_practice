@@ -38,30 +38,29 @@
                             <p class="fs-5 mb-4">
                                 {{board_detail.body | safe}}
                             </p>
-                            <br/><br/><br/>
-                            {% if upload_file %}
-
-                                <p class="lead">
-
-                                    {% for uf in upload_file %}
-                                        <button onclick="location.href='{{ uf.file.url | safe }}'">파일 다운로드</a> </button>
-                                        {{ uf.org_file_name }}
-                                    <br/>
-                                    {% endfor %}
-
-                            {% else %}
-                                <p class="lead"> 첨부파일이 없습니다
-                            {% endif %}
-                            <button onclick="location.href='{% url 'boardApp:boardMain' %}'" style="margin-left: 550px">목록</a> </button>
-                            </p>
-                            {% comment %}
+                            <br/><br/>
+                            <hr/>
                             <div class="card bg-light">
-                            <p style="padding: 10px"><button onclick="location.href='{% url 'boardApp:boardMain' %}'" >목록</a> </button></p>
+                                {% if upload_file %}
+
+                                    <p class="lead" style="margin: 20px;">
+
+                                        {% for uf in upload_file %}
+                                            <button onclick="location.href='{{ uf.file.url | safe }}'">파일 다운로드</a> </button>
+                                            {{ uf.org_file_name }}
+                                        <br/><br/>
+                                        {% endfor %}
+
+                                {% else %}
+                                    <p class="lead"> 첨부파일이 없습니다
+                                {% endif %}
+
+                                </p>
                             </div>
-                            {% endcomment %}
+                            <br/>
+                            <button class="btn btn-dark" onclick="location.href='{% url 'boardApp:boardMain' %}'" style="margin-left: 780px">목록</a> </button>
                         </section>
                     </article>
-                    <br/>
                     <!-- Comments section-->
                     <section class="mb-5">
                         <div class="card bg-light">

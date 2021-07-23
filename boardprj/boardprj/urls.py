@@ -18,6 +18,7 @@ from django.urls import path, include
 import boardApp.views
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls import include
 
 # https://wikidocs.net/71259#3-commonurlspy
 
@@ -26,6 +27,7 @@ urlpatterns = [
     path('', boardApp.views.index, name='index'),
     path('boardMain/', include('boardApp.urls')),
     path('user/', include('common.urls')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
 if settings.DEBUG:

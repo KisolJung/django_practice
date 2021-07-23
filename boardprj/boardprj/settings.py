@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+CKEDITOR_UPLOAD_PATH = "uploads/"
 
 # Application definition
 
@@ -39,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'boardApp.apps.BoardappConfig',
     'common.apps.CommonConfig',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -142,3 +145,25 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')    #실제 파일이 저장되는 �
 
 LOGIN_REDIRECT_URL = '/'    #로그인시 자동으로 이 url로 가게됨!
 LOGOUT_REDIRECT_URL = '/'    #로그인시 자동으로 이 url로 가게됨!
+
+LOGGING = {
+    'version': 1,
+    'filters': {
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        }
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+        }
+    },
+    'loggers': {
+        'django.db.backends': {
+            'level': 'DEBUG',
+            'handlers': ['console'],
+        }
+    }
+}
