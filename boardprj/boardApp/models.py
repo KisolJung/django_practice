@@ -18,7 +18,11 @@ class Comment(models.Model):
     board = models.ForeignKey(Board, on_delete=models.CASCADE, null=True)
     pub_date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    comments = models.TextField()
+    contents = models.TextField()
+    parent_comment = models.ForeignKey('self', on_delete=models.CASCADE, null=True)
+
+    class Meta:
+        db_table = 'comments'
 
 class UploadFile(models.Model):
     board = models.ForeignKey(Board, on_delete=models.CASCADE, null=True)

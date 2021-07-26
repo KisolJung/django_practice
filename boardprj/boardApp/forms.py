@@ -20,9 +20,9 @@ class CreateBoard(forms.ModelForm):
 class CreateComment(forms.ModelForm):
     class Meta:
         model = Comment
-        fields=['comments']
+        fields = ['contents']
         widgets = {
-            'comments': forms.Textarea(attrs={'class':'form-control', 'rows': 4, 'cols': 40, 'placeholder': 'Join the discussion and Leave a comments!'})
+            'contents': forms.Textarea(attrs={'class':'form-control', 'rows': 4, 'cols': 40, 'placeholder': 'Join the discussion and Leave a comments!'})
         }
 
 class UploadFileForm(forms.ModelForm):
